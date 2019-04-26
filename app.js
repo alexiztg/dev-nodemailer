@@ -5,7 +5,6 @@ var to="osvaldo@gabssa.net";
 var from="alexis@gabssa.net";
 var subject="Hola";
 var text="Prueba";
-
 var file = fs.readFileSync(__dirname + '/index.html', 'utf8');
 file = file.replace('correo', 'alexis@gabssa.net')
 

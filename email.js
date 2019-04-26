@@ -5,10 +5,7 @@ module.exports.emailf=function (from, to, subject, text, html) {
     return new Promise(function(reject, resolve){
 
     async function main(){
-
-  
     let testAccount = await nodemailer.createTestAccount();
-
   
     let transporter = nodemailer.createTransport({
         service: 'gmail',
@@ -17,7 +14,6 @@ module.exports.emailf=function (from, to, subject, text, html) {
         pass: 'GABSSA2018' 
         }
     });
-
     let info = await transporter.sendMail({
         from: '"Duva 💪" <alexis@gabssa.net>', 
         to: to, 
@@ -26,12 +22,15 @@ module.exports.emailf=function (from, to, subject, text, html) {
         html: html
     });
 
-        console.log("Message sent: %s", info.messageId);
+        resolve({ err: false })
 
+        console.log("Message sent: %s", info.messageId);
         console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
     }
 
-        main().catch(console.error);
+        main().catch(
+            reject({ err:true })
+        );
     })
 }
 
